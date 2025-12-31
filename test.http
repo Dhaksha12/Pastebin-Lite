@@ -1,0 +1,50 @@
+### Health check
+GET http://localhost:3000/api/healthz
+
+### Create paste (normal case)
+POST http://localhost:3000/api/pastes
+Content-Type: application/json
+
+{
+  "content": "Hello World",
+  "ttl_seconds": 60,
+  "max_views": 2
+}
+
+### Fetch paste (replace <id> with actual ID from create response)
+GET http://localhost:3000/api/pastes/8e49d1fc-fa14-4753-9078-6a9ab4a3dae8
+
+### View paste in browser (HTML)
+# Open manually in browser:
+# http://localhost:3000/p/<id>
+
+### Create paste with short expiry (5 seconds)
+POST http://localhost:3000/api/pastes
+Content-Type: application/json
+
+{
+  "content": "Expires quickly",
+  "ttl_seconds": 5,
+  "max_views": 5
+}
+
+### Fetch short expiry paste (replace <id>)
+GET http://localhost:3000/api/pastes/8e49d1fc-fa14-4753-9078-6a9ab4a3dae8
+# 👉 Run immediately after creation, then wait >5s and run again.
+# First run → shows content.
+# Second run → { "error": "Paste unavailable" }
+
+### Create paste with view limit (1 view only)
+POST http://localhost:3000/api/pastes
+Content-Type: application/json
+
+{
+  "content": "One-time view",
+  "ttl_seconds": 120,
+  "max_views": 1
+}
+
+### Fetch one-time paste (replace <id>)
+GET http://localhost:3000/api/pastes/8e49d1fc-fa14-4753-9078-6a9ab4a3dae8
+# 👉 First run → shows content.
+# Second run → { "error": "Paste unavailable" }
