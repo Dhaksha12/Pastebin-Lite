@@ -18,7 +18,7 @@ Users can create and share text snippets easily.
 Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/your-username/pastebin-lite.git
+git clone https://github.com/Dhaksha12/Pastebin-Lite.git
 cd pastebin-lite
 npm install
 npm run dev
